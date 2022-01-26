@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="todoViewModel"
+            type="com.lkdigital.androidfirebase.todos.TodoViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".todos.TodosFragment">
+
+        <ProgressBar
+            android:id="@+id/todosProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:visibility="@{todoViewModel.loading ? View.VISIBLE : View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/todosList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{todoViewModel.loading ? View.GONE : View.VISIBLE}"
+            tools:listitem="@layout/todo_list_view" />
+
+    </LinearLayout>
+</layout>
