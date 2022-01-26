@@ -3,16 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/todosFragment">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.lkdigital.androidfirebase.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/todosFragment"
         android:name="com.lkdigital.androidfirebase.todos.TodosFragment"
-        android:label="fragment_todos"
-        tools:layout="@layout/fragment_todos" />
+        android:label="Todos"
+        tools:layout="@layout/fragment_todos" >
+        <action
+            android:id="@+id/action_todosFragment_to_todoDetailFragment"
+            app:destination="@id/todoDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/todoCreateFragment"
+        android:name="com.lkdigital.androidfirebase.todos.TodoCreateFragment"
+        android:label="Create Todo"
+        tools:layout="@layout/fragment_todo_create" />
+    <fragment
+        android:id="@+id/todoDetailFragment"
+        android:name="com.lkdigital.androidfirebase.todos.TodoDetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_todo_detail" />
 </navigation>

@@ -2,11 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/homeFragment"
-        android:title="Home" />
-
-    <item
         android:id="@+id/todosFragment"
+        android:icon="@drawable/ic_baseline_list_24_black"
         android:title="Todos" />
 
 </menu>

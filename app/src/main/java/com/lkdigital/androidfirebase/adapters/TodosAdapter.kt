@@ -4,6 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.lkdigital.androidfirebase.R
 import com.lkdigital.androidfirebase.models.Todo
@@ -18,10 +21,18 @@ class TodosAdapter(val todos: ArrayList<Todo>) : RecyclerView.Adapter<TodosAdapt
 
         val todoTV = itemView.findViewById<TextView>(R.id.listTodo)
 
-        fun bindTodos(todo: Todo) {
+        //CardViews
+        val completedCV = itemView.findViewById<CardView>(R.id.completedCardView)
+        val incompleteCV = itemView.findViewById<CardView>(R.id.incompleteCardView)
 
+        fun bindTodos(todo: Todo) {
             todoTV?.text = todo.todo
 
+            if (todo.completed == true) {
+                completedCV.visibility = View.VISIBLE
+            }else {
+                incompleteCV.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -33,8 +44,8 @@ class TodosAdapter(val todos: ArrayList<Todo>) : RecyclerView.Adapter<TodosAdapt
             val id = todos[position].documentId
             val todo = todos[position].todo
 
-//            var bundle = bundleOf("id" to id, "title" to title)
-//            view.findNavController().navigate(R.id.todoDetailFragment, bundle)
+            var bundle = bundleOf("id" to id)
+            view.findNavController().navigate(R.id.todoDetailFragment, bundle)
         }
     }
 
