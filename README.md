@@ -1,4 +1,7 @@
 # AndroidFirebase
 
 ## Firebase (Firestore)
-## ViewModels, ViewBinding, DataBinding
+* ViewModels
+* ViewBinding
+* DataBinding
+* CRUD Todos
