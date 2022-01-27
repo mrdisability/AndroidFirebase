@@ -1,12 +1,18 @@
 package com.lkdigital.androidfirebase.todos
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.lkdigital.androidfirebase.R
 import com.lkdigital.androidfirebase.databinding.FragmentTodoDetailBinding
 import com.lkdigital.androidfirebase.viewmodels.TodoDetailViewModel
@@ -42,13 +48,50 @@ class TodoDetailFragment : Fragment() {
         val id = arguments?.getString("id")
         viewModel.getTodo(id!!)
 
+        binding.goToEditB.setOnClickListener {
+            var bundle = bundleOf("id" to id)
+            findNavController().navigate(R.id.todoEditFragment, bundle)
+        }
+
+        binding.deleteB.setOnClickListener {
+            showDeleteAlert(id)
+        }
+
+        val successObserver = Observer<Boolean> { success ->
+            if (success) {
+                findNavController().navigate(R.id.todosFragment)
+            }
+        }
+
+        viewModel.successfulDelete.observe(requireActivity(), successObserver)
+
         return binding.root
     }
+
+    fun showDeleteAlert(id: String) {
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle("Delete Alert")
+        builder.setMessage("Delete this todo?")
+
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            Toast.makeText(activity,
+                android.R.string.yes, Toast.LENGTH_SHORT).show()
+
+            viewModel.deleteTodo(id)
+        }
+
+        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+            Toast.makeText(activity,
+                android.R.string.no, Toast.LENGTH_SHORT).show()
+        }
+
+        builder.show()
+    }
+
+}
 
 //    fun showAlert(message: String) {
 //        val builder = AlertDialog.Builder(requireActivity())
 //        builder.setMessage(message)
 //        builder.show()
 //    }
-
-}

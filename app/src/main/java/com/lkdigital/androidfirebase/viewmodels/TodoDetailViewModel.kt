@@ -16,12 +16,22 @@ class TodoDetailViewModel: ViewModel() {
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
+    private val _successfulDelete = MutableLiveData<Boolean>()
+    val successfulDelete: LiveData<Boolean> get() = _successfulDelete
+
+    private val _successfulUpdate = MutableLiveData<Boolean>()
+    val successfulUpdate: LiveData<Boolean> get() = _successfulUpdate
+
     private val TAG = "TodoDetailViewModel"
 
     init {
         _todo.value = ""
         _completed.value = false
         _loading.value = true
+
+        _successfulDelete.value = false
+
+        _successfulUpdate.value = false
     }
 
     fun getTodo(id: String) {
@@ -45,6 +55,39 @@ class TodoDetailViewModel: ViewModel() {
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "get failed with ", exception)
+            }
+    }
+
+    fun deleteTodo(id: String) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("todos").document(id)
+            .delete()
+            .addOnSuccessListener {
+                Log.d(TAG, "DocumentSnapshot successfully deleted!")
+
+                _successfulDelete.value = true
+            }
+            .addOnFailureListener {
+                    e -> Log.w(TAG, "Error deleting document", e)
+
+                _successfulDelete.value = false
+            }
+    }
+
+    fun updateTodo(id: String, todo: String, completed: Boolean) {
+        val db = FirebaseFirestore.getInstance()
+        val ref = db.collection("todos").document(id)
+
+        ref
+            .update("todo", todo, "completed", completed)
+            .addOnSuccessListener {
+                Log.d(TAG, "DocumentSnapshot successfully updated!")
+                _successfulUpdate.value = true
+            }
+            .addOnFailureListener {
+                    e -> Log.w(TAG, "Error updating document", e)
+                _successfulUpdate.value = false
             }
     }
 }

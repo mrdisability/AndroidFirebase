@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="todoEditViewModel"
+            type="com.lkdigital.androidfirebase.viewmodels.TodoDetailViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_height="match_parent"
+        tools:context=".todos.TodoEditFragment">
+
+        <EditText
+            android:id="@+id/updateTodoET"
+            android:text="@{todoEditViewModel.todo}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <CheckBox
+            android:id="@+id/updateCompletedCB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="@{todoEditViewModel.completed}"
+            android:text="Completed"/>
+
+        <Button
+            android:id="@+id/updateTodoB"
+            android:text="Update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</layout>

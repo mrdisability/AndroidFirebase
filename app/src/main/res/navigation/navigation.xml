@@ -22,6 +22,11 @@
     <fragment
         android:id="@+id/todoDetailFragment"
         android:name="com.lkdigital.androidfirebase.todos.TodoDetailFragment"
-        android:label="Detail"
+        android:label="Todo Detail"
         tools:layout="@layout/fragment_todo_detail" />
+    <fragment
+        android:id="@+id/todoEditFragment"
+        android:name="com.lkdigital.androidfirebase.todos.TodoEditFragment"
+        android:label="Edit Todo"
+        tools:layout="@layout/fragment_todo_edit" />
 </navigation>
