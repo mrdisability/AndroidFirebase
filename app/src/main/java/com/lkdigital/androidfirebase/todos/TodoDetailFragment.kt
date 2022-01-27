@@ -1,6 +1,5 @@
 package com.lkdigital.androidfirebase.todos
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.lkdigital.androidfirebase.R
 import com.lkdigital.androidfirebase.databinding.FragmentTodoDetailBinding
+import com.lkdigital.androidfirebase.viewmodels.TodoDetailViewModel
 
 /**
  * A simple [Fragment] subclass.

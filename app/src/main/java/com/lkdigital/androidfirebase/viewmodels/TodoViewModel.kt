@@ -1,4 +1,4 @@
-package com.lkdigital.androidfirebase.todos
+package com.lkdigital.androidfirebase.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -16,11 +16,11 @@ class TodoViewModel: ViewModel() {
     val loading: LiveData<Boolean> get() = _loading
 
     init {
-        _todos.value = gettodos()
+        _todos.value = getTodos()
         _loading.value = true
     }
 
-    private fun gettodos(): ArrayList<Todo> {
+    private fun getTodos(): ArrayList<Todo> {
         val todos = arrayListOf<Todo>()
         FirebaseFirestore.getInstance().collection("todos")
             .orderBy("created")
@@ -35,9 +35,9 @@ class TodoViewModel: ViewModel() {
 
                     for (document in snapshot.documents) {
                         val data = document.data
-                        val todo = data?.get("todo") as String
-                        val completed = data?.get("completed") as Boolean
-                        val created = data?.get("created") as Timestamp
+                        val todo = data?.get("todo") as? String
+                        val completed = data?.get("completed") as? Boolean
+                        val created = data?.get("created") as? Timestamp
 
                         val documentId = document.id
 

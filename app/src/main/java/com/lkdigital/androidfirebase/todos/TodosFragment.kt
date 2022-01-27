@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lkdigital.androidfirebase.R
 import com.lkdigital.androidfirebase.adapters.TodosAdapter
 import com.lkdigital.androidfirebase.databinding.FragmentTodosBinding
+import com.lkdigital.androidfirebase.viewmodels.TodoViewModel
 
 /**
  * A simple [Fragment] subclass.

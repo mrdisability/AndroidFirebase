@@ -9,7 +9,7 @@
 
         <variable
             name="todoViewModel"
-            type="com.lkdigital.androidfirebase.todos.TodoViewModel" />
+            type="com.lkdigital.androidfirebase.viewmodels.TodoViewModel" />
     </data>
 
     <LinearLayout
